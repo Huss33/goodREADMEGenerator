@@ -1,7 +1,14 @@
+let badgeChoices = ["NONE","Apache 2.0 license","Boost Software License 1.0","The MIT license","Modzilla Public License 2.0"];
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
-
+function renderLicenseBadge(license) {
+  if (license === license[0]) {
+      return " ";
+  } else (license === license[1]); 
+      return [![License]('https://img.shields.io/badge/License-Apache_2.0-blue.svg')]('https://opensource.org/licenses/Apache-2.0');
+   else (license === license[2]) 
+  }
+} 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {}
@@ -12,9 +19,20 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `# ${data.title}`
+  `## Table of Contents:
+  -[Installation](#install)
+  -[Usage](#usage)
+  -[Contributing](#contribution)
+  -[License](#license)`
+  `## Description: ${data.description}`
+  `## Usage: ${data.usage}`
+  `## License Select ${data.license}`
+  `## Add a Screenshot ![alt text](assets/images/screenshot.png)`
+  `## Contributing ${data.contribution}`
+  `## Tests ${data.test}`
+  `## Questions ${data.gitHub},${data.email}`
 
-`;
 }
 // # <Your-Project-Title>
 // ## Description
