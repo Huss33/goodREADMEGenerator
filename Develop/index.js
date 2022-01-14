@@ -66,12 +66,20 @@ function init() {
         console.log(userInput);
         var markDownStr = writeToFile(userInput);
         console.log(markDownStr);
-        fs.writeFile("projectREADME.md", markDownStr,(err) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log("README created!");
-        })
+        fs.readFile("projectREADME.md", "utf8", (err, data) => {
+            if (err) throw err;
+            console.log(typeof JSON.parse(data));
+            userList = generateMarkdown(data);
+            userList.push(userInput)
+            console.log(userList);
+
+            fs.writeFile("projectREADME.md", JSON.stringify(userList),(err) => {
+                if (err) {
+                    console.log(err);
+                }
+                console.log("README created!");
+            })
+            })
     })
 }
     // questions()
