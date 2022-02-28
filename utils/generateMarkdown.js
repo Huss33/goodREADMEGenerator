@@ -1,41 +1,65 @@
 let badgeChoices = ["NONE","Apache 2.0 license","Boost Software License 1.0","The MIT license","Modzilla Public License 2.0"];
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
+// let parseData = function (data) {
+//   return  JSON.parse(data);
+// }
+
 function renderLicenseBadge(license) {
-//   if (license === license[0]) {
-//       return " ";
-//   } else (license === license[1]); 
-//       return [![License]('https://img.shields.io/badge/License-Apache_2.0-blue.svg')]('https://opensource.org/licenses/Apache-2.0');
-//    else (license === license[2]) 
-//   }
+  if (license === license[0]) {
+      return " ";
+  } else if (license === license[1]) { 
+      return [![License]('https://img.shields.io/badge/License-Apache_2.0-blue.svg')]('https://opensource.org/licenses/Apache-2.0')
+  } else if (license === license[2]) {
+      return [![License]('https://img.shields.io/badge/License-Boost_1.0-lightblue.svg')]('https://www.boost.org/LICENSE_1_0.txt')
+  } else if (license === license[3]) {
+      return [![License, MIT]('https://img.shields.io/badge/License-MIT-yellow.svg')]('https://opensource.org/licenses/MIT')
+  } else if (license === license[4]) {
+      return [![License, MPL, 2.0]('https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg')]('https://opensource.org/licenses/MPL-2.0')
+  }
 } 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+const licenseTable = "- [License](#license)"
+
+function renderLicenseLink(license) {
+  if (license !== license[0]) {
+    return licenseTable
+  } else {
+    return " "
+  }
+}
+//link to table of contents - [License](#license)
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-let parseData = function (data) {
-  return  JSON.parse(data);
+function renderLicenseSection(license) {
+  // RETURN EMPTY STRING IF NO LICENSE
+  if (license !== license[0]) {
+    return `## License Select ${parseData.license}`
+  } else {
+    return " "
+  }
 }
+let parseData = function(data) {
+  return  JSON.parse(data);
+}   
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}`,
-  // `## Table of Contents:
-  // -[Installation](#install)
-  // -[Usage](#usage)
-  // -[Contributing](#contribution)
-  // -[License](#license)`
-  `## Description: ${data.description}`,
-  `## Usage: ${data.usage}`,
-  `## License Select ${data.license}`,
-  `## Add a Screenshot ![alt text](assets/images/screenshot.png)`,
-  `## Contributing ${data.contribution}`,
-  `## Tests ${data.test}`,
-  `## Questions ${data.gitHub},${data.email}`;
+function generateMarkdown(parseData) {
+  return `# ${parseData.title}
+## Table of Contents:
+- [Installation](#install)
+- [Usage](#usage)
+- [Contributing](#contribution)
+${renderLicenseLink(licenseTable)}
+## Description: ${parseData.description}
+## Usage: ${parseData.usage}
+${renderLicenseSection(parseData.license)}
+## Add a Screenshot ![alt text](assets/images/screenshot.png)
+## Contributing ${parseData.contribution}
+## Tests ${parseData.test}
+## Questions ${parseData.gitHub},${parseData.email}`;
 
 }
 // # <Your-Project-Title>
